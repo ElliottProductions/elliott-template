@@ -1,5 +1,5 @@
 .Home {
     padding: var(--padding);
     background-color: var(--color-2);
-    font: var(--label-font);
+    font: var(--serif-font);
   }

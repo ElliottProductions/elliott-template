@@ -16,9 +16,9 @@
     }
   
     @media (min-width: 750px) {
-      /* height: 50px; */
+      height: 50px;
       padding-left: 20px;
-      /* top: 0; */
+      top: 0;
       
       .MenuContainer {
         display: none;

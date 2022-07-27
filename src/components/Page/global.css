@@ -6,7 +6,7 @@
     'Bitstream Vera Sans', 'Trebuchet MS', Verdana,
     'Verdana Ref', sans-serif;
     
-    --serif-font: 'Cormorant SC', serif;
+    --serif-font: 'Uchen', serif;
 
     --header-color: #dda15e;
     --color-2: #fefae0;
@@ -15,7 +15,8 @@
     --background-color: #f9f2e7;
     --black-color: rgb(27, 42, 48);
     --caption-color: rgb(65, 99, 112);
-    --white-color: white;
+    --white-color: #edf6f9;
+    --padding-browser: 40px;
   
     --padding: 20px;
     @media (min-width: 750px) {
