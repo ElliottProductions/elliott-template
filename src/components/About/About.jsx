@@ -11,7 +11,7 @@ import {
 import styles from './About.css';
 
 export default function About() {
-  return <>
+  return (<>
     <p className={styles.About} >I think The X-Files is very nineties, because everything is left in doubt.
 There’s no closure, no answers. . . . Obviously it’s tapping in to something
 the nation wants. I think it has to do with religious stirrings—a sort of New
@@ -59,5 +59,5 @@ combination for a TV show. Either that, or the Fox network has an amazing market
         <FormButton>Submit</FormButton>
       </form>
     </section>
-  </>;
+  </>);
 }

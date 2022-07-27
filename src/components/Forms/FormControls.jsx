@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import classNames from 'classnames';
 import styles from './FormControls.css';
 
@@ -6,6 +7,7 @@ function FormControl({
   children,
   className: customClassName,
 }) {
+
   const className = classNames(
     styles.FormControl,
     customClassName
