@@ -1,3 +1,5 @@
 .Home {
-    padding: 20px;
+    padding: var(--padding);
+    background-color: var(--color-2);
+    font: var(--label-font);
   }

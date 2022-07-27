@@ -1,8 +1,8 @@
 .Header {
     position: sticky;
     top: 0;
-    background: pink;
-  
+    background: var(--header-color);
+    
     height: 30px;
   
     display: grid;
@@ -16,9 +16,10 @@
     }
   
     @media (min-width: 750px) {
-      height: 50px;
+      /* height: 50px; */
       padding-left: 20px;
-  
+      /* top: 0; */
+      
       .MenuContainer {
         display: none;
       }
@@ -27,4 +28,5 @@
         display: initial;
       }
     }
+
   }

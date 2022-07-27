@@ -4,7 +4,7 @@ import styles from './Navigation.css';
 export default function Navigation() {
   return (
     <nav className={styles.Navigation}>
-      <Link to="/">Home</Link>
+      <Link className="label-text" to="/">Home</Link>
       <Link to="list">List</Link>
       <Link to="about">About</Link>
     </nav>
