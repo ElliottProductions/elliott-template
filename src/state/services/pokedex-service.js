@@ -3,7 +3,7 @@ const TYPES_URL = `${API_URL}/types`;
 
 export async function getPokedex(searchParams, page) {
   return await get(
-    `${API_URL}?${searchParams.toString()}&page=${page}`
+    `${API_URL}?${searchParams.toString()}&perPage=50&page=${page}`
   );
 }
 
