@@ -8,6 +8,7 @@ import Layout from './Page/Layout';
 import Home from './Home/Home';
 import Pokedex from './Pokedex/Pokedex.jsx';
 import About from './About/About';
+import List from './List/List';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="pokedex" element={<Pokedex />} />
+          <Route path="list" element={<List />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
