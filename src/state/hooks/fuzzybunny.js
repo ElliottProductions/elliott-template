@@ -31,34 +31,3 @@ export function useFamilies() {
   
   return { families, error };
 }
-
-export function useActions() {
-  const { dispatch } = useContext(FuzzyBunnyContext);
-  
-  // const createAction = (service, type, makeSuccessMessage) => async (...args) => {
-  //   const { data, error } = await service(...args);
-  
-  //   if (error) showError(error.message);
-  
-  //   if (data) {
-  //     dispatch({ type, payload: data });
-  //     const successMessage = makeSuccessMessage(data);
-  //     showSuccess(successMessage);
-  //   }
-  // };
-  
-  const add = async (family) => {
-    const { data, error } = await addFamily(family);
-    if (error) {
-      showError(error.message);
-    }
-    if (data) {
-      dispatch({ type: 'add', payload: data });
-      showSuccess(`Added ${data.name}`);
-    }
-  };
-  
-   
-  
-  return { add };
-}
