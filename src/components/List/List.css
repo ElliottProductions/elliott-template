@@ -3,3 +3,21 @@
     background-color: var(--color-2);
     font: var(--serif-font);
   }
+
+.Families {
+    padding: var(--padding);
+    background-color: var(--color-2);
+    font: var(--serif-font);
+  }
+
+.FamilyList {
+    padding: var(--padding);
+    background-color: var(--color-2);
+    font: var(--serif-font);
+  }
+
+.Family {
+    padding: var(--padding);
+    background-color: var(--color-2);
+    font: var(--serif-font);
+  }
