@@ -15,7 +15,8 @@ export async function getFamWithBuns() {
 }
 
 export async function addFamily(family) {
-  return await client.from('loving_families').insert(family).single();
+  const res = await client.from('loving_families').insert(family).single();
+  return res;
 }
 
 export async function updateFamily(id, familyUpdate) {

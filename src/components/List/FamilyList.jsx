@@ -5,10 +5,17 @@ import styles from './List.css';
 
 export default function FamilyList() {
   const { families } = useFamilies();
+  const [newFam, setNewFam] = useState();
+  const { add } = useFamilyActions();
 
   if (!families) return null;
 
   
+
+  const handleAdd = async () => {
+    await add({ name: newFam });
+  };
+
   return (
     <>
       <div className={styles.FamilyList}>
@@ -19,8 +26,8 @@ export default function FamilyList() {
           ))}
         </ul>
         <br/>
-        <input></input>
-        <button>Add Family</button>
+        <input onChange={e => setNewFam(e.target.value)}></input>
+        <button onClick={handleAdd}>Add Family</button>
       </div>
     </>
   );
@@ -29,7 +36,6 @@ export default function FamilyList() {
 
 function Family({ family }) {
   
-
   const { update, remove } = useFamilyActions();
 
   const handleEdit = async (edited) => {
