@@ -1,33 +1,38 @@
 import { useEffect, useRef, useState } from 'react';
 import { useFamilies, useFamilyActions } from '../../state/hooks/fuzzyBunny.js';
 import { InputControl } from '../Forms/FormControls.jsx';
+import BunTags from './Buntags.jsx';
 import styles from './List.css';
 
 export default function FamilyList() {
   const { families } = useFamilies();
-  const [newFam, setNewFam] = useState();
+  const [newFam, setNewFam] = useState('');
   const { add } = useFamilyActions();
 
   if (!families) return null;
+  
 
   
 
   const handleAdd = async () => {
+    if (newFam === '') { return;}
     await add({ name: newFam });
   };
 
   return (
     <>
-      <div className={styles.FamilyList}>
-        <ul>
+      <div >
+        <ul className={styles.FamilyList}>
         
           {families.map((family) => (
-            <Family key={family.id} family={family} />
+            <Family className={styles.Family}
+              key={family.id} family={family} />
           ))}
         </ul>
         <br/>
         <input onChange={e => setNewFam(e.target.value)}></input>
-        <button onClick={handleAdd}>Add Family</button>
+        <button className={styles.FormButton}
+          onClick={handleAdd}>Add Family</button>
       </div>
     </>
   );
@@ -41,7 +46,7 @@ function Family({ family }) {
   const handleEdit = async (edited) => {
     await update(family.id, edited);
   };
-
+  
   
 
   const handleRemove = async () => {
@@ -54,10 +59,11 @@ function Family({ family }) {
   
   return (
     <li className={styles.Family}>
+      <button className={styles.DeleteButton} onClick={handleRemove}>ⓧ</button>
       <EditableHeader
         initialValue={family.name}
         onEdit={handleEdit}/>
-      <button onClick={handleRemove}>ⓧ</button>
+      {family.bunnies && <BunTags bunnies={family.bunnies} />}
     </li>
 
   );
