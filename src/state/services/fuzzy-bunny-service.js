@@ -25,3 +25,12 @@ export async function updateFamily(id, familyUpdate) {
     .eq('id', id)
     .single();
 }
+
+export async function removeFamily(id) {
+  return await client
+    .from('loving_families')
+    .delete()
+    .eq('id', id)
+    .single();
+}
+

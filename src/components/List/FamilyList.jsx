@@ -8,6 +8,7 @@ export default function FamilyList() {
 
   if (!families) return null;
 
+  
   return (
     <>
       <div className={styles.FamilyList}>
@@ -34,6 +35,8 @@ function Family({ family }) {
   const handleEdit = async (edited) => {
     await update(family.id, edited);
   };
+
+  
 
   const handleRemove = async () => {
     const message = `Are you sure you want to remove family ${family.name}?`;

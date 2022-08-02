@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { FuzzyBunnyContext } from '../context/FuzzyBunnyContext.jsx';
-import { client } from '../services/client.js';
 import {
   addFamily,
   getFamWithBuns,
+  removeFamily,
   updateFamily,
 } from '../services/fuzzy-bunny-service.js';
 
@@ -68,9 +68,14 @@ export function useFamilyActions() {
     success: (data) => `Updated family "${data.name}"`,
   });
 
+  const remove = createAction({
+    service: removeFamily,
+    type: 'remove',
+    success: (data) => `Removed family "${data.name}"`,
+  });
   
 
-  return { add, update };
+  return { add, update, remove };
 }
 
 
