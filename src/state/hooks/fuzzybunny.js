@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { FuzzyBunnyContext } from '../context/FuzzyBunnyContext.jsx';
+import { client } from '../services/client.js';
 import {
+  addFamily,
   getFamWithBuns,
+  updateFamily,
 } from '../services/fuzzy-bunny-service.js';
-// import { showSuccess, showError } from '../services/toaster.js';
 
 export function useFamilies() {
   const [error, setError] = useState(null);
@@ -33,44 +35,42 @@ export function useFamilies() {
   return { families, error };
 }
 
-// function createDispatchActions(dispatch) {
-//   return function createAction({ service, type, success }) {
-//     return async (...args) => {
-//       const { data, error } = await service(...args);
+function createDispatchActions(dispatch) {
+  return function createAction({ service, type, success }) {
+    return async (...args) => {
+      const { data, error } = await service(...args);
 
-//       if (error) showError(error.message);
+      if (error) console.log(error.message);
 
-//       if (data) {
-//         dispatch({ type, payload: data });
-//         const successMessage = success(data);
-//         showSuccess(successMessage);
-//       }
-//     };
-//   };
-// }
+      if (data) {
+        dispatch({ type, payload: data });
+        const successMessage = success(data);
+        console.log(successMessage);
+      }
+    };
+  };
+}
 
-// export function useFamilyActions() {
-//   const { familyDispatch } = useContext(FuzzyBunnyContext);
+export function useFamilyActions() {
+  const { familyDispatch } = useContext(FuzzyBunnyContext);
 
-//   const createAction = createDispatchActions(familyDispatch);
+  const createAction = createDispatchActions(familyDispatch);
 
-//   const add = createAction({
-//     service: addFamily,
-//     type: 'add',
-//     success: (data) => `Added ${data.name}`,
-//   });
+  const add = createAction({
+    service: addFamily,
+    type: 'add',
+    success: (data) => `Added ${data.name}`,
+  });
 
-//   const remove = createAction({
-//     service: removeFamily,
-//     type: 'remove',
-//     success: (data) => `Removed ${data.name}`,
-//   });
+  const update = createAction({
+    service: updateFamily,
+    type: 'update',
+    success: (data) => `Updated family "${data.name}"`,
+  });
 
-//   const update = createAction({
-//     service: updateFamily,
-//     type: 'update',
-//     success: (data) => `Updated ${data.name}`,
-//   });
+  
 
-//   return { add, remove, update };
-// }
+  return { add, update };
+}
+
+
