@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useFamilies, useFamilyActions } from '../../state/hooks/fuzzyBunny.js';
+import { useFamilies, useFamilyActions } from '../../state/hooks/FuzzyBunny.js';
 import { InputControl } from '../Forms/FormControls.jsx';
 import BunTags from './BunTags.jsx';
 import styles from './List.css';
