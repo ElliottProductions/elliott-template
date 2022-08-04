@@ -1,0 +1,5 @@
+.Home {
+    padding: var(--padding);
+    background-color: var(--color-2);
+    font: var(--serif-font);
+  }
