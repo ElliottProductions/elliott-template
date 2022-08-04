@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useFamilies, useFamilyActions } from '../../state/hooks/fuzzyBunny.js';
 import { InputControl } from '../Forms/FormControls.jsx';
-import BunTags from './Buntags.jsx';
+import BunTags from './BunTags.jsx';
 import styles from './List.css';
 
 export default function FamilyList() {
