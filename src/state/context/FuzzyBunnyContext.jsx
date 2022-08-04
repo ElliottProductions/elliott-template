@@ -2,20 +2,20 @@ import { createContext, useReducer } from 'react';
 
 export const FuzzyBunnyContext = createContext();
 
-function familyReducer(families, { type, payload }) {
-  switch (type) {
-    case 'load':
-      return payload;
-    case 'add':
-      return [...families, payload];
-    case 'update':
-      return families.map((f) => (f.id === payload.id ? payload : f));
-    case 'remove':
-      return families.filter((f) => f.id !== payload.id);
-    default:
-      throw Error(`Uknown action: ${type}`);
-  }
-}
+// function familyReducer(families, { type, payload }) {
+//   switch (type) {
+//     case 'load':
+//       return payload;
+//     case 'add':
+//       return [...families, payload];
+//     case 'update':
+//       return families.map((f) => (f.id === payload.id ? payload : f));
+//     case 'remove':
+//       return families.filter((f) => f.id !== payload.id);
+//     default:
+//       throw Error(`Uknown action: ${type}`);
+//   }
+// }
 
 function reducer(list, { type, payload }) {
   switch (type) {
