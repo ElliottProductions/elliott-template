@@ -11,12 +11,14 @@ import About from './About/About';
 import FuzzyBunnyProvider from '../state/context/FuzzyBunnyContext';
 import Families from './List/Families';
 import FamilyList from './List/FamilyList';
+import UserAuth from './UserAuth/UserAuth';
 
 export default function App() {
   return (
     <Router>
       <FuzzyBunnyProvider>
         <Routes>
+          <Route path="user/*" element={<UserAuth />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="pokedex" element={<Pokedex />} />

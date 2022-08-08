@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+export { default as Form } from './Form.jsx';
 import classNames from 'classnames';
 import { forwardRef } from 'react';
 import styles from './FormControls.css';

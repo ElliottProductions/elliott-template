@@ -15,7 +15,7 @@ export default function Header() {
         <Navigation />
       </div>
 
-      <div>User</div>
+      <div>Boofer</div>
     </header>
   );
 }
