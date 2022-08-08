@@ -1,34 +1,18 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
-import Layout from './Page/Layout';
-import Home from './Home/Home';
-import Pokedex from './Pokedex/Pokedex.jsx';
-import About from './About/About';
-import FuzzyBunnyProvider from '../state/context/FuzzyBunnyContext';
-import Families from './List/Families';
-import FamilyList from './List/FamilyList';
-import UserAuth from './UserAuth/UserAuth';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import Routes from './Routes.jsx';
+import UserProvider from '../state/context/UserContext.jsx';
+import FuzzyBunnyProvider from '../state/context/FuzzyBunnyContext.jsx';
 
 export default function App() {
   return (
-    <Router>
+    <UserProvider>
       <FuzzyBunnyProvider>
-        <Routes>
-          <Route path="user/*" element={<UserAuth />} />
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="pokedex" element={<Pokedex />} />
-            <Route path="familylist" element={<FamilyList />}>
-              <Route index element={<Families />} />
-            </Route>
-            <Route path="about" element={<About />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
+        <Toaster />
+        <Router>
+          <Routes />
+        </Router>
       </FuzzyBunnyProvider>
-    </Router>);
+    </UserProvider>
+  );
 }

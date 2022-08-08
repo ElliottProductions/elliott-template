@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
-export { default as Form } from './Form.jsx';
+/* eslint-disable no-prototype-builtins */
+import { Children, cloneElement, forwardRef } from 'react';
 import classNames from 'classnames';
-import { forwardRef } from 'react';
 import styles from './FormControls.css';
 
 function FormControl({
@@ -9,32 +8,74 @@ function FormControl({
   children,
   className: customClassName,
 }) {
-
-  const className = classNames(
-    styles.FormControl,
-    customClassName
-  );
+  const className = classNames(styles.FormControl, customClassName);
 
   return (
     <label className={className}>
-      <Label text={label} />
+      <LabelText text={label} />
       {children}
     </label>
   );
 }
 
-function Label({ text }) {
-  return <span className="label-text">{text}</span>;
+function LabelText({ text, as: Tag = 'span' }) {
+  if (!text) return null;
+
+  const className = classNames(styles.Label, 'label-text');
+  return <Tag className={className}>{text}</Tag>;
 }
 
-export function CheckboxControl({ label, text, ...rest }) {
+function Option({ text, type, ...rest }) {
+  return (
+    <label className={styles.CheckboxLabel}>
+      <input type={type} {...rest} />
+      {text}
+    </label>
+  );
+}
+
+export function CheckboxOption(props) {
+  return <Option type="checkbox" {...props} />;
+}
+
+export function RadioOption(props) {
+  return <Option type="radio" {...props} />;
+}
+
+export function CheckboxControl({ label, ...rest }) {
   return (
     <div className={styles.FormControl}>
-      <Label text={label} />
-      <label className={styles.CheckboxLabel}>
-        <input type="checkbox" {...rest} />
-        {text}
-      </label>
+      <LabelText text={label} />
+      <CheckboxOption {...rest} />
+    </div>
+  );
+}
+
+export function OptionGroupControl({
+  label,
+  name,
+  onChange,
+  size = '100px',
+  children,
+}) {
+  return (
+    <div className={styles.FormControl}>
+      <fieldset>
+        <LabelText text={label} as="legend" />
+        <div
+          className={styles.Options}
+          style={{
+            gridTemplateColumns: `repeat(
+            auto-fill,
+            minmax(${size}, 1fr)
+          )`,
+          }}
+        >
+          {Children.map(children, (child) =>
+            cloneElement(child, { name, onChange })
+          )}
+        </div>
+      </fieldset>
     </div>
   );
 }
@@ -44,44 +85,67 @@ const verifyValue = (props) => {
     props.value = props.value ?? '';
 };
 
-// eslint-disable-next-line react/display-name
 export const InputControl = forwardRef((props, ref) => {
-  const { label, className, ...rest } = props;
+  const { label, className, children, ...rest } = props;
   verifyValue(rest);
 
   return (
     <FormControl label={label} className={className}>
       <input ref={ref} {...rest} />
+      {children}
     </FormControl>
   );
 });
 
-export function SelectControl({
-  label,
+InputControl.displayName = 'InputControl';
+
+export const SelectControl = forwardRef((props, ref) => {
+  const { label, children, ...rest } = props;
+  verifyValue(rest);
+
+  return (
+    <FormControl label={label}>
+      <select ref={ref} {...rest}>
+        {children}
+      </select>
+    </FormControl>
+  );
+});
+
+SelectControl.displayName = 'SelectControl';
+
+export const TextAreaControl = forwardRef((props, ref) => {
+  const { label, ...rest } = props;
+  verifyValue(rest);
+
+  return (
+    <FormControl label={label}>
+      <textarea ref={ref} {...rest}></textarea>
+    </FormControl>
+  );
+});
+
+TextAreaControl.displayName = 'TextAreaControl';
+
+export function FormButton({
   children,
+  icon = false,
+  className: customClassName,
   ...rest
 }) {
-  return (
-    <FormControl label={label}>
-      <select {...rest}>{children}</select>
-    </FormControl>
-  );
-}
+  const className = classNames(styles.FormButton, customClassName, {
+    [styles.Icon]: icon,
+  });
 
-export function TextAreaControl({ label, ...rest }) {
   return (
-    <FormControl label={label}>
-      <textarea {...rest}></textarea>
-    </FormControl>
-  );
-}
-
-export function FormButton({ children }) {
-  return (
-    <button className={styles.FormButton}>
+    <button className={className} {...rest}>
       {children}
     </button>
   );
+}
+
+export function FormButtonControl(props) {
+  return <FormButton className={styles.FormControl} {...props} />;
 }
 
 export function Fieldset({ legend, children }) {
@@ -92,3 +156,4 @@ export function Fieldset({ legend, children }) {
     </fieldset>
   );
 }
+
