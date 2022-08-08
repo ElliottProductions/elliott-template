@@ -1,0 +1,54 @@
+.UserAuth {
+    padding: var(--padding);
+  
+    .Data {
+      padding: 30px;
+      font-family: monospace;
+    }
+  }
+
+.Auth {
+    display: grid;
+    place-content: center;
+  
+    padding-top: 30px;
+  
+    form {
+      background: var(--offset-color);
+      padding: 30px 60px;
+      width: 500px;
+  
+      display: grid;
+      row-gap: 25px;
+    }
+}
+
+.Profile {
+  display: grid;
+  place-content: center;
+
+  padding-top: 30px;
+
+  form {
+    background: var(--offset-color);
+    padding: 30px 60px;
+    width: 500px;
+
+    display: grid;
+    row-gap: 25px;
+  }
+
+  .Avatar {
+    input {
+      padding: 0 !important;
+    }
+  }
+}
+
+.Avatar {
+  height: 32px;
+  width: 32px;
+  object-fit: cover;
+  border: 1px solid var(--black-color);
+  border-radius: 100%;
+}
